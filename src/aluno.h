@@ -1,6 +1,6 @@
 #ifndef ALUNO_H
 #define ALUNO_H
-#define TAM 1
+#define TAM 2
 
 typedef struct
 {
@@ -13,14 +13,6 @@ typedef struct
 }Aluno;
 
 void cadastrarAlunos(Aluno *alunos);
-
-
-
-
-
-
-
-
 
 
 

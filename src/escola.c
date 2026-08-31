@@ -28,24 +28,27 @@ int main(void) {
       case 1:{
         printf("Módulo Aluno\n");
         int op = 0;
-        printf("0 - Sair\n");
-        printf("1 - Cadastrar aluno\n");
-        printf("2 - Atualizar aluno\n");
-        printf("3 - Listar aluno\n");
-        printf("4 - Excluir aluno\n");
-        scanf("%d",&op);
-        switch (op)
-        {
-          case  0:
-          sair = 0;
-          break;
-          case  1:
-          cadastrarAlunos(alunos);
-          break;
         
-        default:
-          break;
-        }
+          printf("0 - Sair\n");
+          printf("1 - Cadastrar aluno\n");
+          printf("2 - Atualizar aluno\n");
+          printf("3 - Listar aluno\n");
+          printf("4 - Excluir aluno\n");
+          scanf("%d",&op);
+          switch (op)
+          {
+            case  0:
+            sair = 0;
+            break;
+            case  1:
+            cadastrarAlunos(alunos);
+            break;
+          
+          default:
+            break;
+          }
+        
+        
 
         break;
       }

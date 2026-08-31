@@ -21,10 +21,12 @@ void cadastrarAlunos(Aluno *alunos){
         printf("\nCPF: ");
         scanf(" %s",alunos[i].cpf);
 
-        printf("%d, %s, %s, %c, %s\n",alunos[i].matricula,alunos[i].nome,alunos[i].dataNascimento,alunos[i].sexo,alunos[i].cpf);
+        
+    }
+    for(int i = 1;i != (TAM+1); i++){
+        printf("%d\n%s\n%s\n%c\n%s\n\n",alunos[i].matricula,alunos[i].nome,alunos[i].dataNascimento,alunos[i].sexo,alunos[i].cpf);
 
     }
-
     
 }
 
