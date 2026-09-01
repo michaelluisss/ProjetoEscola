@@ -43,8 +43,11 @@ int main(void) {
             case  1:
             cadastrarAlunos(alunos);
             break;
+            case  3:
+            listarAlunos(alunos);
+            break;
           
-          default:
+            default:
             break;
           }
         

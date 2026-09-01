@@ -29,5 +29,11 @@ void cadastrarAlunos(Aluno *alunos){
     }
     
 }
+ void listarAlunos(Aluno *alunos){
+    for(int i = 1;i != (TAM+1); i++){
+        printf("listagem de alunos\n");
+        printf("Matricula: %d\nNome: %s\nData de nascimento: %s\nSexo: %c\nCpf: %s\n\n",alunos[i].matricula,alunos[i].nome,alunos[i].dataNascimento,alunos[i].sexo,alunos[i].cpf);
 
+    }
+ }
 
