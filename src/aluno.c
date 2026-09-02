@@ -18,7 +18,7 @@ void cadastrarAlunos(Aluno *alunos){
         printf("\nNOME: ");
         fgets(alunos[i].nome,sizeof(alunos[i].nome),stdin);
 
-        printf("\nDATA DE NASCIMENTO: ");
+        printf("DATA DE NASCIMENTO: ");
         scanf(" %s",alunos[i].dataNascimento);
 
         printf("\nSEXO: ");
@@ -27,7 +27,17 @@ void cadastrarAlunos(Aluno *alunos){
         printf("\nCPF: ");
         scanf(" %s",alunos[i].cpf);
 
-        
+        char op;
+        printf("\nDeseja continuar?(s/n)\n");
+        scanf(" %c",&op);
+        if(op == 's'|| op == 'S'){
+
+        }else if(op == 'n'|| op == 'N'){
+            return;
+        }else{
+            printf("opção Invalida");
+        }
+
     }
     for(int i = 0;i < TAM; i++){
         printf("%d\n%s\n%s\n%c\n%s\n\n",alunos[i].matricula,alunos[i].nome,alunos[i].dataNascimento,alunos[i].sexo,alunos[i].cpf);
