@@ -28,10 +28,10 @@ int main(void)
     }
     case 1:
     { 
-      int op = 0;
-      while (!op){
-        menuAluno(op);
-      }
+      //int op;
+     //while (!op){
+       menuAluno();
+      //}
       break;
     }
     case 2:

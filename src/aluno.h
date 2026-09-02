@@ -16,7 +16,7 @@ void cadastrarAlunos(Aluno *alunos);
 void listarAlunos(Aluno *alunos);
 void atualizarAlunos(Aluno *alunos);
 
-int menuAluno(int op);
+void menuAluno(void);
 
 
 #endif 

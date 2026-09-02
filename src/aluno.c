@@ -83,38 +83,40 @@ void atualizarAlunos(Aluno *alunos){
 
  void listarAlunos(Aluno *alunos){
     printf("Listagem de alunos\n\n");
-    int i = 0;
-    while(alunos[i].matricula > 0 && alunos[i].matricula<=TAM){
+    for(int i = 0; i < TAM; i++){
         printf("Matricula: %d\nNome: %s\nData de nascimento: %s\nSexo: %c\nCpf: %s\n\n",alunos[i].matricula,alunos[i].nome,alunos[i].dataNascimento,alunos[i].sexo,alunos[i].cpf);
-        i++;
     }
-
-   
  }
-int menuAluno(int op){
-    printf("Módulo Aluno\n");
-    printf("0 - Sair\n");
-    printf("1 - Cadastrar aluno\n");
-    printf("2 - Atualizar aluno\n");
-    printf("3 - Listar aluno\n");
-    printf("4 - Excluir aluno\n");
-    scanf(" %d",&op);
-    switch (op)
-    {
-    case  0:
-    break;
-    case  1:
-    cadastrarAlunos(alunos);
-    break;
-    case 2:
-    atualizarAlunos(alunos);
-    break;
-    case  3:
-    listarAlunos(alunos);
-    break;
+
+void menuAluno(void){
+    int op;
     
-    default:
-    break;
-    }
-    return op;
+    do{
+        printf("Módulo Aluno\n");
+        printf("0 - Sair\n");
+        printf("1 - Cadastrar aluno\n");
+        printf("2 - Atualizar aluno\n");
+        printf("3 - Listar aluno\n");
+        printf("4 - Excluir aluno\n");
+        scanf(" %d",&op);
+        switch (op)
+        {
+
+        case  0:
+        break;
+        case  1:
+        cadastrarAlunos(alunos);
+        break;
+        case 2:
+        atualizarAlunos(alunos);
+        break;
+        case  3:
+        listarAlunos(alunos);
+        break;
+        
+        default:
+        printf("Opção inválida!\n");
+        break;
+        }
+    }while(op != 0);
 }
