@@ -84,9 +84,30 @@ void atualizarAlunos(Aluno *alunos){
  void listarAlunos(Aluno *alunos){
     printf("Listagem de alunos\n\n");
     for(int i = 0; i < TAM; i++){
+        if(alunos[i].matricula != 0){
         printf("Matricula: %d\nNome: %s\nData de nascimento: %s\nSexo: %c\nCpf: %s\n\n",alunos[i].matricula,alunos[i].nome,alunos[i].dataNascimento,alunos[i].sexo,alunos[i].cpf);
+        }
     }
  }
+
+ void excluirAlunos(Aluno *alunos){
+    int matricula;
+    printf("Digite a matricula do aluno que deseja excluir: ");
+    scanf("%d",&matricula);
+    
+    for(int i = 0; i < TAM; i++){
+        if(alunos[i].matricula == matricula){
+            alunos[i].matricula = 0;
+            alunos[i].nome[0] = '\0';
+            alunos[i].sexo = '\0';
+            alunos[i].dataNascimento[0] = '\0';
+            alunos[i].cpf[0] = '\0';
+            printf("Aluno excluido com sucesso\n");
+            return;
+        }
+    }
+    printf("Aluno não encontrado\n");
+}
 
 void menuAluno(void){
     int op;
@@ -112,6 +133,9 @@ void menuAluno(void){
         break;
         case  3:
         listarAlunos(alunos);
+        break;
+        case 4:
+        excluirAlunos(alunos);
         break;
         
         default:

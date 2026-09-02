@@ -15,6 +15,7 @@ typedef struct
 void cadastrarAlunos(Aluno *alunos);
 void listarAlunos(Aluno *alunos);
 void atualizarAlunos(Aluno *alunos);
+void excluirAlunos(Aluno *alunos);
 
 void menuAluno(void);
 
