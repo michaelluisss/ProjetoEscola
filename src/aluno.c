@@ -1,11 +1,35 @@
 #include <stdio.h>
 #include "aluno.h"
 #include <stdlib.h>
+#include <string.h>
 
 
 
 Aluno alunos[TAM];
 
+
+int verificarDataNascimento(char dataNascimento[]){
+
+    if(strlen(dataNascimento) != 8){
+        printf("\n\nData de nascimento inválida. O formato correto é DDMMAAAA.\n");
+        return 0;
+    }
+    int dia = (dataNascimento[0] - '0') * 10 + (dataNascimento[1] - '0');
+    int mes = (dataNascimento[2] - '0') * 10 + (dataNascimento[3] - '0');
+    int ano = (dataNascimento[4] - '0') * 1000 + (dataNascimento[5] - '0') * 100 + (dataNascimento[6] - '0') * 10 + (dataNascimento[7] - '0');
+
+    if(dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900 || ano > 2024){
+        printf("\n\nData de nascimento inválida!\n");
+        return 0;
+    }
+    if(mes == 2 || mes == 4 || mes == 6 || mes == 9 || mes == 11){
+        if(dia > 30){
+            printf("\n\nData de nascimento inválida!\n");
+            return 0;
+        }
+    }
+    return 1;
+}
 
 void cadastrarAlunos(Aluno *alunos){
     for(int i = 0; i < TAM; i++){
@@ -19,8 +43,12 @@ void cadastrarAlunos(Aluno *alunos){
         printf("\nNOME: ");
         fgets(alunos[i].nome,sizeof(alunos[i].nome),stdin);
 
-        printf("DATA DE NASCIMENTO: ");
+        printf("DATA DE NASCIMENTO(DDMMAAAA): ");
         scanf(" %s",alunos[i].dataNascimento);
+        if(!verificarDataNascimento(alunos[i].dataNascimento)){
+            i--; // Volta para repetir o cadastro
+            continue;
+        }
 
         printf("SEXO: ");
         scanf(" %c",&alunos[i].sexo);
