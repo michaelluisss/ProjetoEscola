@@ -14,6 +14,7 @@ void cadastrarAlunos(Aluno *alunos){
         printf("Formulario\n");
         printf("\nNUMERO DA MATRICULA: %d",i+1);
         alunos[i].matricula = i+1;
+        alunos[i].deletado = 0; // inicia como não deletado
 
         printf("\nNOME: ");
         fgets(alunos[i].nome,sizeof(alunos[i].nome),stdin);
@@ -21,10 +22,10 @@ void cadastrarAlunos(Aluno *alunos){
         printf("DATA DE NASCIMENTO: ");
         scanf(" %s",alunos[i].dataNascimento);
 
-        printf("\nSEXO: ");
+        printf("SEXO: ");
         scanf(" %c",&alunos[i].sexo);
 
-        printf("\nCPF: ");
+        printf("CPF: ");
         scanf(" %s",alunos[i].cpf);
 
         char op;
@@ -55,6 +56,14 @@ void atualizarAlunos(Aluno *alunos){
     
     for(int i = 0; i < TAM; i++){
         if(alunos[i].matricula == matricula){
+            
+            printf("\nDados atuais:\n");
+            printf("Matricula: %d\n", alunos[i].matricula);
+            printf("Nome: %s", alunos[i].nome);
+            printf("Data de nascimento: %s\n", alunos[i].dataNascimento);
+            printf("Sexo: %c\n", alunos[i].sexo);
+            printf("CPF: %s\n\n", alunos[i].cpf);
+            
             printf("Qual informação deseja atualizar?\n");
             printf("1 - Nome\n");
             printf("2 - Sexo\n");
@@ -94,7 +103,7 @@ void atualizarAlunos(Aluno *alunos){
  void listarAlunos(Aluno *alunos){
     printf("Listagem de alunos\n\n");
     for(int i = 0; i < TAM; i++){
-        if(alunos[i].matricula != 0){
+        if(alunos[i].matricula != 0 && alunos[i].deletado == 0){
         printf("Matricula: %d\nNome: %s\nData de nascimento: %s\nSexo: %c\nCpf: %s\n\n",alunos[i].matricula,alunos[i].nome,alunos[i].dataNascimento,alunos[i].sexo,alunos[i].cpf);
         }
     }
@@ -107,11 +116,7 @@ void atualizarAlunos(Aluno *alunos){
     
     for(int i = 0; i < TAM; i++){
         if(alunos[i].matricula == matricula){
-            alunos[i].matricula = 0;
-            alunos[i].nome[0] = '\0';
-            alunos[i].sexo = '\0';
-            alunos[i].dataNascimento[0] = '\0';
-            alunos[i].cpf[0] = '\0';
+            alunos[i].deletado = 1; // 1 para aluno deletado
             printf("Aluno excluido com sucesso\n");
             return;
         }
@@ -134,23 +139,23 @@ void menuAluno(void){
         {
 
         case  0:
-        break;
+            break;
         case  1:
-        cadastrarAlunos(alunos);
-        break;
+            cadastrarAlunos(alunos);
+            break;
         case 2:
-        atualizarAlunos(alunos);
-        break;
+            atualizarAlunos(alunos);
+            break;
         case  3:
-        listarAlunos(alunos);
-        break;
+            listarAlunos(alunos);
+            break;
         case 4:
-        excluirAlunos(alunos);
-        break;
+            excluirAlunos(alunos);
+            break;
         
         default:
-        printf("Opção inválida!\n");
-        break;
+            printf("Opção inválida!\n");
+            break;
         }
     }while(op != 0);
 }

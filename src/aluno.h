@@ -1,6 +1,6 @@
 #ifndef ALUNO_H
 #define ALUNO_H
-#define TAM 2
+#define TAM 5
 
 typedef struct
 {
@@ -9,6 +9,7 @@ typedef struct
     char sexo;
     char dataNascimento[10];
     char cpf[11];
+    int deletado; // 0 para não deletado
 
 }Aluno;
 
