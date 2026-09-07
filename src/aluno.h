@@ -13,6 +13,7 @@ typedef struct
 
 }Aluno;
 
+int verificarCpf(char *cpf);
 int verificarDataNascimento(char dataNascimento[]);
 void cadastrarAlunos(Aluno *alunos);
 void listarAlunos(Aluno *alunos);
