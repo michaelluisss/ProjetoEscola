@@ -7,10 +7,10 @@
 
 Disciplina disciplinas[TAM_DISCIPLINA];
 
+int qtdDisciplina = 0; 
 
 void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
 {
-    int qtdDisciplina = 0;
 
     for (int i = qtdDisciplina; i < TAM_DISCIPLINA; i++)
     {
@@ -48,6 +48,7 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
                 if (professores[j].deletado == 0 && disciplinas[i].matriculaProfessor == professores[j].matricula)
                 {
                     encontrou = 1;
+                    qtdDisciplina++;
                     break;
                 }
             }
@@ -83,7 +84,7 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
 void listarDisciplinas(Disciplina *disciplinas, Professor *professores) //testar funçãos
 {
     printf("Listagem de Disciplinas\n\n");
-    for (int i = 0; i < TAM_DISCIPLINA; i++)
+    for (int i = 0; i < qtdDisciplina; i++)
     {
         if (disciplinas[i].nome[0] != '\0' && disciplinas[i].deletado == 0)
         {
