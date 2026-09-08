@@ -1,4 +1,5 @@
 #include "aluno.h"
+#include "professor.h"
 #include "validacoes.h"
 #include <stdio.h>
 
@@ -28,7 +29,7 @@ int main(void) {
       break;
     }
     case 2: {
-      printf("Módulo Professor\n");
+      menuProfessor();
       break;
     }
     case 3: {
