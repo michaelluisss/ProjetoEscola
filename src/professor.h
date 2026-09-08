@@ -1,7 +1,7 @@
 #ifndef PROFESSOR_H
 #define PROFESSOR_H
 
-#define TAM 5
+#define TAM_PROFESSOR 5
 
 typedef struct
 {
@@ -13,6 +13,8 @@ typedef struct
     int deletado; // 0 para não deletado
 
 }Professor;
+
+extern Professor professores[TAM_PROFESSOR]; //avisa para outro arquivo.c q essa variavel existe mas q foi criada em outro arquivo, para poder ser utilizada
 
 void cadastrarProfessores(Professor *professores);
 void listarProfessores(Professor *professores);

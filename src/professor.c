@@ -6,12 +6,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-Professor professores[TAM];
+Professor professores[TAM_PROFESSOR];
 
 
 void cadastrarProfessores(Professor *professores)
 {
-    for (int i = 0; i < TAM; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
 
         getchar();
@@ -60,7 +60,7 @@ void cadastrarProfessores(Professor *professores)
             printf("opção Invalida");
         }
     }
-    for (int i = 0; i < TAM; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
         printf("%d\n%s\n%s\n%c\n%s\n\n", professores[i].matricula, professores[i].nome,
                professores[i].dataNascimento, professores[i].sexo, professores[i].cpf);
@@ -75,7 +75,7 @@ void atualizarProfessores(Professor *professores)
     printf("Digite a matricula do professor que deseja atualizar: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < TAM; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
         if (professores[i].matricula == matricula)
         {
@@ -127,7 +127,7 @@ void atualizarProfessores(Professor *professores)
 void listarProfessores(Professor *professores)
 {
     printf("Listagem de professores\n\n");
-    for (int i = 0; i < TAM; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
         if (professores[i].matricula != 0 && professores[i].deletado == 0)
         {
@@ -145,7 +145,7 @@ void excluirProfessores(Professor *professores)
     printf("Digite a matricula do professor que deseja excluir: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < TAM; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
         if (professores[i].matricula == matricula)
         {

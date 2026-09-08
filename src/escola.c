@@ -1,5 +1,6 @@
 #include "aluno.h"
 #include "professor.h"
+#include "disciplina.h"
 #include "validacoes.h"
 #include <stdio.h>
 
@@ -33,7 +34,7 @@ int main(void) {
       break;
     }
     case 3: {
-      printf("Módulo Disciplina\n");
+      menuDisciplina();
       break;
     }
     default: {

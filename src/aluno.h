@@ -1,7 +1,7 @@
 #ifndef ALUNO_H
 #define ALUNO_H
 
-#define TAM 5
+#define TAM_ALUNO 5
 
 typedef struct
 {
