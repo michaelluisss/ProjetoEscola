@@ -9,7 +9,7 @@ typedef struct
     char nome[99];
     char sexo;
     char dataNascimento[99];
-    char cpf[11];
+    char cpf[12];
     int deletado; // 0 para não deletado
 
 }Professor;

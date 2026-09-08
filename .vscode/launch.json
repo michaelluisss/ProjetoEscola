@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/michael/ProjetoEscola",
-      "program": "/home/michael/ProjetoEscola/build/Debug/outDebug",
+      "cwd": "/home/michael/ProjetoEscola/src",
+      "program": "/home/michael/ProjetoEscola/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
