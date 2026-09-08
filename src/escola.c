@@ -1,15 +1,14 @@
-#include <stdio.h>
 #include "aluno.h"
+#include "validacoes.h"
+#include <stdio.h>
 
-int main(void)
-{
+int main(void) {
 
   int opcao;
 
   int sair = 0; // falso
 
-  while (!sair)
-  {
+  while (!sair) {
     printf("Projeto Escola\n");
     printf("0 - Sair\n");
     printf("1 - Aluno\n");
@@ -18,34 +17,25 @@ int main(void)
 
     scanf(" %d", &opcao);
 
-    switch (opcao)
-    {
+    switch (opcao) {
 
-    case 0:
-    {
+    case 0: {
       sair = 1;
       break;
     }
-    case 1:
-    { 
-      //int op;
-     //while (!op){
-       menuAluno();
-      //}
+    case 1: {
+      menuAluno();
       break;
     }
-    case 2:
-    {
+    case 2: {
       printf("Módulo Professor\n");
       break;
     }
-    case 3:
-    {
+    case 3: {
       printf("Módulo Disciplina\n");
       break;
     }
-    default:
-    {
+    default: {
       printf("Opção Inválida\n");
     }
     }

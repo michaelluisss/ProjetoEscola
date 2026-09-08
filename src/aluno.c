@@ -1,85 +1,11 @@
-#include <stdio.h>
 #include "aluno.h"
+#include "validacoes.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 Aluno alunos[TAM];
 
-int verificarCpf(char *cpf)
-{
-    int resultado = 0;
-    if (strlen(cpf) != 11){     return resultado;}
-    int todosIguais = 1;
-    for (int i = 1; i < 11; i++){
-        if (cpf[i] != cpf[0])
-        {
-            todosIguais = 0;
-            break;
-            
-        }
-    }
-    if(todosIguais){    return resultado;}
-
-    int somatorio = 0;
-    int digito = 0;
-
-    for (int i = 10; i >= 2; i--)
-    {
-        somatorio += (cpf[digito] - '0') * i;
-        digito++;
-    }
-
-    int digVerificador = 11 - (somatorio % 11);
-    if (((digVerificador >= 10) && (cpf[9] == '0')) ||
-        (digVerificador + '0') == cpf[9])
-    {
-        somatorio = 0;
-        digito = 0;
-        for (int i = 11; i >= 2; i--)
-        {
-            somatorio += (cpf[digito] - '0') * i;
-            digito++;
-        }
-
-        digVerificador = 11 - (somatorio % 11);
-        if (((digVerificador >= 10) && (cpf[10] == '0')) ||
-            (digVerificador + '0') == cpf[10])
-        {
-            resultado = 1;
-        }
-    }
-    else{
-        resultado = 0; }
-    return resultado;
-}
-
-int verificarDataNascimento(char dataNascimento[])
-{
-
-    if (strlen(dataNascimento) != 8)
-    {
-        printf("\n\nData de nascimento inválida. O formato correto é DDMMAAAA.\n");
-        return 0;
-    }
-    int dia = (dataNascimento[0] - '0') * 10 + (dataNascimento[1] - '0');
-    int mes = (dataNascimento[2] - '0') * 10 + (dataNascimento[3] - '0');
-    int ano = (dataNascimento[4] - '0') * 1000 + (dataNascimento[5] - '0') * 100 + (dataNascimento[6] - '0') * 10 + (dataNascimento[7] - '0');
-
-    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900 || ano > 2024)
-    {
-        printf("\n\nData de nascimento inválida!\n");
-        return 0;
-    }
-    if (mes == 2 || mes == 4 || mes == 6 || mes == 9 || mes == 11)
-    {
-        if (dia > 30)
-        {
-            printf("\n\nData de nascimento inválida!\n");
-            return 0;
-        }
-    }
-    return 1;
-}
 
 void cadastrarAlunos(Aluno *alunos)
 {
@@ -90,7 +16,7 @@ void cadastrarAlunos(Aluno *alunos)
         printf("Formulario\n");
         printf("\nNUMERO DA MATRICULA: %d", i + 1);
         alunos[i].matricula = i + 1;
-        alunos[i].deletado = 0; // inicia como não deletado
+        alunos[i].deletado = 0;
 
         printf("\nNOME: ");
         fgets(alunos[i].nome, sizeof(alunos[i].nome), stdin);
@@ -99,7 +25,7 @@ void cadastrarAlunos(Aluno *alunos)
         scanf(" %s", alunos[i].dataNascimento);
         if (!verificarDataNascimento(alunos[i].dataNascimento))
         {
-            i--; // Volta para repetir o cadastro
+            i--;
             continue;
         }
 
@@ -134,7 +60,8 @@ void cadastrarAlunos(Aluno *alunos)
     }
     for (int i = 0; i < TAM; i++)
     {
-        printf("%d\n%s\n%s\n%c\n%s\n\n", alunos[i].matricula, alunos[i].nome, alunos[i].dataNascimento, alunos[i].sexo, alunos[i].cpf);
+        printf("%d\n%s\n%s\n%c\n%s\n\n", alunos[i].matricula, alunos[i].nome,
+               alunos[i].dataNascimento, alunos[i].sexo, alunos[i].cpf);
     }
 }
 
@@ -202,7 +129,10 @@ void listarAlunos(Aluno *alunos)
     {
         if (alunos[i].matricula != 0 && alunos[i].deletado == 0)
         {
-            printf("Matricula: %d\nNome: %s\nData de nascimento: %s\nSexo: %c\nCpf: %s\n\n", alunos[i].matricula, alunos[i].nome, alunos[i].dataNascimento, alunos[i].sexo, alunos[i].cpf);
+            printf("Matricula: %d\nNome: %s\nData de nascimento: %s\nSexo: %c\nCpf: "
+                   "%s\n\n",
+                   alunos[i].matricula, alunos[i].nome, alunos[i].dataNascimento,
+                   alunos[i].sexo, alunos[i].cpf);
         }
     }
 }

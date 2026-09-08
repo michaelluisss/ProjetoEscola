@@ -1,5 +1,6 @@
 #ifndef ALUNO_H
 #define ALUNO_H
+
 #define TAM 5
 
 typedef struct
@@ -13,8 +14,6 @@ typedef struct
 
 }Aluno;
 
-int verificarCpf(char *cpf);
-int verificarDataNascimento(char dataNascimento[]);
 void cadastrarAlunos(Aluno *alunos);
 void listarAlunos(Aluno *alunos);
 void atualizarAlunos(Aluno *alunos);
