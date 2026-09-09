@@ -81,6 +81,67 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
     }
 }
 
+void atualizarDisciplinas(Disciplina *disciplinas, Professor *professores)
+{
+    char codigo[7];
+    int opcao;
+
+    printf("Digite o código da disciplina que deseja atualizar: ");
+    getchar();
+    fgets(codigo, sizeof(codigo), stdin);
+    codigo[strcspn(codigo, "\n")] = '\0';
+
+    for (int i = 0; i < TAM_DISCIPLINA; i++)
+    {
+        if (strcmp(disciplinas[i].codigo, codigo) == 0)
+        {
+
+            printf("\nDados atuais:\n");
+            printf("Código: %s\n", disciplinas[i].codigo);
+            printf("Nome: %s", disciplinas[i].nome);
+            printf("Semestre: %d\n", disciplinas[i].semestre);
+            for (int j = 0; j < TAM_PROFESSOR; j++)
+            {
+                if (professores[j].matricula == disciplinas[i].matriculaProfessor)
+                {
+                    printf("Professor: %s\n", professores[j].nome);
+                    break;
+                }
+            }
+
+            printf("Qual informação deseja atualizar?\n");
+            printf("1 - Nome\n");
+            printf("2 - Semestre\n");
+            printf("3 - Professor\n");
+
+            scanf("%d", &opcao);
+
+            switch (opcao)
+            {
+
+            case 1:
+                printf("Digite o novo nome: ");
+                getchar();
+                fgets(disciplinas[i].nome, sizeof(disciplinas[i].nome), stdin);
+                break;
+            case 2:
+                printf("Digite o novo semestre: ");
+                scanf("%d", &disciplinas[i].semestre);
+                break;
+            case 3:
+                printf("Digite a nova matrícula do professor: ");
+                scanf("%d", &disciplinas[i].matriculaProfessor);
+                break;
+            default:
+                printf("Opção inválida\n");
+            }
+            return;
+        }
+    }
+    printf("Disciplina não encontrada\n");
+}
+
+
 void listarDisciplinas(Disciplina *disciplinas, Professor *professores) //testar funçãos
 {
     printf("Listagem de Disciplinas\n\n");
@@ -102,6 +163,32 @@ void listarDisciplinas(Disciplina *disciplinas, Professor *professores) //testar
             
         }
     }
+}
+
+void excluirDisciplinas(Disciplina *disciplinas, Professor *professores)
+{
+    char codigo[7];
+    printf("Digite o código da disciplina que deseja excluir: ");
+    getchar();
+    fgets(codigo, sizeof(codigo), stdin);
+    codigo[strcspn(codigo, "\n")] = '\0';
+
+    for (int i = 0; i < qtdDisciplina; i++)
+    {
+        if (strcmp(disciplinas[i].codigo, codigo) == 0)
+        {
+            for (int j = i; j < qtdDisciplina - 1; j++)
+            {
+                disciplinas[j] = disciplinas[j + 1];
+            }
+            qtdDisciplina--;
+            disciplinas[qtdDisciplina].deletado = 1;
+
+            printf("Disciplina excluída com sucesso\n");
+            return;
+        }
+    }
+    printf("Disciplina não encontrada\n");
 }
 
 
@@ -129,13 +216,13 @@ void menuDisciplina(void)
             cadastrarDisciplinas(disciplinas, professores);
             break;
         case 2:
-            printf("Atualizar disciplina\n");
+            atualizarDisciplinas(disciplinas, professores);
             break;
         case 3:
             listarDisciplinas(disciplinas, professores);
             break;
         case 4:
-            printf("Excluir disciplina\n");
+            excluirDisciplinas(disciplinas, professores);
             break;
 
         default:

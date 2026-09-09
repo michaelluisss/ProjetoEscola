@@ -16,6 +16,8 @@ typedef struct
 
 void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores);
 void listarDisciplinas(Disciplina *disciplinas , Professor *professores);
+void atualizarDisciplinas(Disciplina *disciplinas, Professor *professores);
+void excluirDisciplinas(Disciplina *disciplinas, Professor *professores);
 
 void menuDisciplina(void);
 
