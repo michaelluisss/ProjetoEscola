@@ -2,8 +2,9 @@
 #define PROFESSOR_H
 
 #define TAM_PROFESSOR 5
+#define MAX_DISCIPLINA 4
 
-typedef struct
+typedef struct Professor
 {
     int matricula;
     char nome[99];
@@ -11,7 +12,8 @@ typedef struct
     char dataNascimento[99];
     char cpf[12];
     int deletado; // 0 para não deletado
-
+    int disciplinas[4];
+    int qtdDisciplinas;
 }Professor;
 
 extern Professor professores[TAM_PROFESSOR]; //avisa para outro arquivo.c q essa variavel existe mas q foi criada em outro arquivo, para poder ser utilizada

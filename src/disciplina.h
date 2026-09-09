@@ -2,14 +2,17 @@
 #define DISCIPLINA_H
 
 #include "professor.h"
+#include "aluno.h"
 #define TAM_DISCIPLINA 8
+
 
 typedef struct 
 {
     char nome[99];
     char codigo[7];
     int semestre;
-    int matriculaProfessor;
+    int matriculaProfessor[TAM_PROFESSOR];
+    int matriculaAluno[TAM_ALUNO];
     int deletado;
     
 }Disciplina;
