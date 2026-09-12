@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/michael/ProjetoEscola/src",
-      "program": "/home/michael/ProjetoEscola/src/build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": "d:/ProjetoEscola/src",
+      "program": "d:/ProjetoEscola/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
