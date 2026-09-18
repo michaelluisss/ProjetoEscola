@@ -41,64 +41,15 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
         while(encontrou == 0)
         {
 
-            //OLHAAAAAAAAAAAAAAAAR AQUI
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
+           
             int disciplinasMatriculadas = 0;
             printf("Digite a quantidade de disciplinas o professor estar ministrando: ");
-            scanf
-            printf("Digite a matricula do professor: ");
-            scanf(" %d", &disciplinas[i].matriculaProfessor[i]);
+            scanf(" %d", &disciplinas[i].qtdProfessor);
+            for(int j = 1;j<= disciplinas[i].qtdProfessor;j++){
+                
+                printf("Digite a matricula do professor n° %d: ",j);
+                scanf(" %d", &disciplinas[i].matriculaProfessor[i]);
+            }
 
             for(int j = 0; j < TAM_PROFESSOR; j++)
             {
