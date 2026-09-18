@@ -15,6 +15,8 @@ typedef struct
     int qtdDisciplinas;
 }Aluno;
 
+extern Aluno alunos[TAM_ALUNO];
+
 void cadastrarAlunos(Aluno *alunos);
 void listarAlunos(Aluno *alunos);
 void atualizarAlunos(Aluno *alunos);

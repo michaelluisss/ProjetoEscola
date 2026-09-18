@@ -11,8 +11,9 @@ typedef struct
     char nome[99];
     char codigo[7];
     int semestre;
-    int matriculaProfessor[TAM_PROFESSOR];
+    int matriculaProfessor;
     int qtdProfessor;
+    int qtdAluno;
     int matriculaAluno[TAM_ALUNO];
     int deletado;
     
@@ -22,6 +23,8 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores);
 void listarDisciplinas(Disciplina *disciplinas , Professor *professores);
 void atualizarDisciplinas(Disciplina *disciplinas, Professor *professores);
 void excluirDisciplinas(Disciplina *disciplinas, Professor *professores);
+void adicionarAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos);
+void removerAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos);
 
 void menuDisciplina(void);
 

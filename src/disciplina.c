@@ -48,7 +48,7 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
             for(int j = 1;j<= disciplinas[i].qtdProfessor;j++){
                 
                 printf("Digite a matricula do professor n° %d: ",j);
-                scanf(" %d", &disciplinas[i].matriculaProfessor[i]);
+                scanf(" %d", &disciplinas[i].matriculaProfessor);
             }
 
             for(int j = 0; j < TAM_PROFESSOR; j++)
@@ -168,6 +168,17 @@ void listarDisciplinas(Disciplina *disciplinas, Professor *professores) //testar
                     break;
                 }
             }
+            for(int j = 0; j < disciplinas[i].qtdAluno; j++)
+            {
+                for(int k = 0; k < TAM_ALUNO; k++)
+                {
+                    if(alunos[k].matricula == disciplinas[i].matriculaAluno[j])
+                    {
+                        printf("Aluno: %s\n", alunos[k].nome);
+                        break;
+                    }
+                }
+            }
             
         }
     }
@@ -200,6 +211,78 @@ void excluirDisciplinas(Disciplina *disciplinas, Professor *professores)
 }
 
 
+void adicionarAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos)
+{
+    char codigo[7];
+    int matriculaAluno;
+
+    printf("Digite o código da disciplina que deseja adicionar o aluno: ");
+    getchar();
+    fgets(codigo, sizeof(codigo), stdin);
+    codigo[strcspn(codigo, "\n")] = '\0';
+
+    for(int i = 0; i < qtdDisciplina; i++)
+    {
+        if (strcmp(disciplinas[i].codigo, codigo) == 0)
+        {
+            printf("Digite a matricula do aluno que deseja adicionar:");
+            scanf("%d", &matriculaAluno);
+
+            for(int j = 0; j < TAM_ALUNO; j++)
+            {
+                if(alunos[j].matricula == matriculaAluno && alunos[j].deletado == 0)
+                {
+                    disciplinas[i].matriculaAluno[disciplinas[i].qtdAluno] = matriculaAluno;
+                    disciplinas[i].qtdAluno++;
+                    printf("Aluno adicionado com sucesso!\n");
+                    return;
+                }
+            }
+            printf("Aluno não encontrado!\n");
+            return;
+        }
+    }
+    printf("Disciplina não encontrada!\n");
+}
+
+void removerAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos)
+{
+    char codigo[7];
+    int matriculaAluno;
+
+    printf("Digite o código da disciplina que deseja remover o aluno: ");
+    getchar();
+    fgets(codigo, sizeof(codigo), stdin);
+    codigo[strcspn(codigo, "\n")] = '\0';
+
+    for(int i = 0; i < qtdDisciplina; i++)
+    {
+        if (strcmp(disciplinas[i].codigo, codigo) == 0)
+        {
+            printf("Digite a matricula do aluno que deseja remover:");
+            scanf("%d", &matriculaAluno);
+
+            for(int j = 0; j < disciplinas[i].qtdAluno; j++)
+            {
+                if(disciplinas[i].matriculaAluno[j] == matriculaAluno)
+                {
+                    for(int k = j; k < disciplinas[i].qtdAluno - 1; k++)
+                    {
+                        disciplinas[i].matriculaAluno[k] = disciplinas[i].matriculaAluno[k + 1];
+                    }
+                    disciplinas[i].qtdAluno--;
+                    printf("Aluno removido com sucesso!\n");
+                    return;
+                }
+            }
+            printf("Aluno não encontrado na disciplina!\n");
+            return;
+        }
+    }
+    printf("Disciplina não encontrada!\n");
+}
+
+
 
 
 void menuDisciplina(void)
@@ -214,6 +297,8 @@ void menuDisciplina(void)
         printf("2 - Atualizar disciplina\n");
         printf("3 - Listar disciplina\n");
         printf("4 - Excluir disciplina\n");
+        printf("5 - Adicionar aluno a disciplina\n");
+        printf("6 - Remover aluno da disciplina\n");
         scanf(" %d", &op);
         switch (op)
         {
@@ -231,6 +316,12 @@ void menuDisciplina(void)
             break;
         case 4:
             excluirDisciplinas(disciplinas, professores);
+            break;
+        case 5:
+            adicionarAlunoDisciplina(disciplinas, alunos);
+            break;
+        case 6:
+            removerAlunoDisciplina(disciplinas, alunos);
             break;
 
         default:
