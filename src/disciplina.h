@@ -19,8 +19,11 @@ typedef struct
     
 }Disciplina;
 
+extern Disciplina disciplinas[TAM_DISCIPLINA];
+extern int qtdDisciplina;
+
 void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores);
-void listarDisciplinas(Disciplina *disciplinas , Professor *professores);
+void listarDisciplinasComAlunos(Disciplina *disciplinas, Professor *professores, Aluno *alunos);
 void atualizarDisciplinas(Disciplina *disciplinas, Professor *professores);
 void excluirDisciplinas(Disciplina *disciplinas, Professor *professores);
 void adicionarAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos);

@@ -17,6 +17,7 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
         getchar();
         printf("Formulario\n");
         disciplinas[i].deletado = 0;
+        disciplinas[i].qtdAluno = 0;
 
         printf("\nNOME: ");
         fgets(disciplinas[i].nome, sizeof(disciplinas[i].nome), stdin);
@@ -38,34 +39,27 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
         }
         int encontrou = 0;
 
-        while(encontrou == 0)
+        while (encontrou == 0)
         {
+            printf("Digite a matricula do professor: ");
+            scanf("%d", &disciplinas[i].matriculaProfessor);
 
-           
-            int disciplinasMatriculadas = 0;
-            printf("Digite a quantidade de disciplinas o professor estar ministrando: ");
-            scanf(" %d", &disciplinas[i].qtdProfessor);
-            for(int j = 1;j<= disciplinas[i].qtdProfessor;j++){
-                
-                printf("Digite a matricula do professor n° %d: ",j);
-                scanf(" %d", &disciplinas[i].matriculaProfessor);
-            }
-
-            for(int j = 0; j < TAM_PROFESSOR; j++)
+            for (int j = 0; j < TAM_PROFESSOR; j++)
             {
-                if (professores[j].deletado == 0 && disciplinas[i].matriculaProfessor == professores[j].matricula)
+                if (professores[j].deletado == 0 &&
+                    disciplinas[i].matriculaProfessor == professores[j].matricula)
                 {
                     encontrou = 1;
-                    qtdDisciplina++;
                     break;
                 }
             }
 
-            if(!encontrou)
+            if (encontrou == 0)
             {
                 printf("Matricula invalida, tente novamente.\n");
             }
         }
+        qtdDisciplina++;
 
 
         char op;
@@ -150,7 +144,7 @@ void atualizarDisciplinas(Disciplina *disciplinas, Professor *professores)
 }
 
 
-void listarDisciplinas(Disciplina *disciplinas, Professor *professores) //testar funçãos
+void listarDisciplinasComAlunos(Disciplina *disciplinas, Professor *professores, Aluno *alunos) //testar funçãos
 {
     printf("Listagem de Disciplinas\n\n");
     for (int i = 0; i < qtdDisciplina; i++)
@@ -312,7 +306,7 @@ void menuDisciplina(void)
             atualizarDisciplinas(disciplinas, professores);
             break;
         case 3:
-            listarDisciplinas(disciplinas, professores);
+            listarDisciplinasComAlunos(disciplinas, professores, alunos);
             break;
         case 4:
             excluirDisciplinas(disciplinas, professores);

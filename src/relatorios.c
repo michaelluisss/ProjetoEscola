@@ -1,0 +1,114 @@
+#include "relatorios.h"
+#include "aluno.h"
+#include "professor.h"
+#include "disciplina.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+void listarDisciplinasSemAlunos(Disciplina *disciplinas, Professor *professores) //testar funçãos
+{
+    printf("Listagem de Disciplinas\n\n");
+    for (int i = 0; i < qtdDisciplina; i++)
+    {
+        if (disciplinas[i].nome[0] != '\0' && disciplinas[i].deletado == 0)
+        {
+            printf("Nome: %s\nCodigo: %s\nSemestre: %d\n",
+                   disciplinas[i].nome, disciplinas[i].codigo, disciplinas[i].semestre);
+             
+            for (int j = 0; j < TAM_PROFESSOR; j++)
+            {
+                if (professores[j].matricula == disciplinas[i].matriculaProfessor)
+                {
+                    printf("Professor: %s\n", professores[j].nome);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void listarAlunosPorSexo(Aluno *alunos)
+{
+    char sexo;
+
+    printf("Digite o sexo que deseja listar (M/F): ");
+    scanf(" %c", &sexo);
+    if (sexo == 'm')
+    {
+        sexo = 'M';
+    }
+    else if (sexo == 'f')
+    {
+        sexo = 'F';
+    }
+
+   
+    if(sexo == 'M')
+    {
+        printf("Listagem de Alunos do sexo Masculino\n\n");
+    }
+    else if(sexo == 'F')
+    {
+        printf("Listagem de Alunos do sexo Feminino\n\n");
+    }
+    else
+    {
+        printf("Sexo inválido. Digite M ou F.\n");
+        return;
+    }
+    
+
+    for (int i = 0; i < TAM_ALUNO; i++)
+    {
+        if (alunos[i].deletado == 0 && alunos[i].sexo == sexo)
+        {
+            printf("Matricula: %d\nNome: %s\nSexo: %c\nData de Nascimento: %s\nCPF: %s\n\n",
+                   alunos[i].matricula, alunos[i].nome, alunos[i].sexo, alunos[i].dataNascimento, alunos[i].cpf);
+        }
+    }
+}  
+
+
+void menuRelatorios(void)
+{
+    int op;
+
+    do
+    {
+        printf("Módulo Relatorios\n");
+        printf("0 - Sair\n");
+        printf("1 - Listar Alunos\n");
+        printf("2 - Listar Professores\n");
+        printf("3 - Listar Disciplinas sem alunos\n");
+        printf("4 - Listar Disciplinas com alunos\n");
+        printf("5 - Listar Alunos por Sexo\n");
+        scanf(" %d", &op);
+        switch (op)
+        {
+
+        case 0:
+            break;
+        case 1:
+            listarAlunos(alunos);
+            break;
+        case 2:
+            listarProfessores(professores);
+            break;
+        case 3:
+            listarDisciplinasSemAlunos(disciplinas, professores);
+            break;
+        case 4:
+            listarDisciplinasComAlunos(disciplinas, professores, alunos);
+            break;
+        case 5:
+            listarAlunosPorSexo(alunos);    
+            break;
+
+        default:
+            printf("Opção inválida!\n");
+            break;
+        }
+    } while (op != 0);
+}

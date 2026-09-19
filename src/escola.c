@@ -2,6 +2,7 @@
 #include "professor.h"
 #include "disciplina.h"
 #include "validacoes.h"
+#include "relatorios.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -58,7 +59,7 @@ int main(void)
     }
     case 4:
     {
-      menuDisciplina();
+      menuRelatorios();
       break;
     }
     default:
