@@ -102,6 +102,51 @@ void listarAlunosPorNome(Aluno *alunos)
     }
 }
 
+int transformarData(char dataNascimento[]) //função para transformar a data em DDMMAAAA
+{
+    int dia = (dataNascimento[0] - '0') * 10 + (dataNascimento[1] - '0');
+
+    int mes = (dataNascimento[2] - '0') * 10 + (dataNascimento[3] - '0');
+
+    int ano = (dataNascimento[4] - '0') * 1000 + (dataNascimento[5] - '0') * 100 + (dataNascimento[6] - '0') * 10 + (dataNascimento[7] - '0');
+
+    return ano * 10000 + mes * 100 + dia;
+}
+
+void listarAlunosPorData(Aluno *alunos)
+{
+    Aluno copia[99];
+    Aluno temp;
+    int i, j;
+
+    for (i = 0; i < qtdAluno; i++)
+    {
+        copia[i] = alunos[i];
+    }
+
+    printf("Lista de Alunos por Data de Nascimento:\n\n");
+
+    for (i = 0; i < qtdAluno - 1; i++)
+    {
+        for (j = 0; j < qtdAluno - 1 - i; j++)
+        {
+            if (transformarData(copia[j].dataNascimento) >
+                transformarData(copia[j + 1].dataNascimento))
+            {
+                temp = copia[j];
+                copia[j] = copia[j + 1];
+                copia[j + 1] = temp;
+            }
+        }
+    }
+
+    for (i = 0; i < qtdAluno; i++)
+    {
+        printf("Nome: %s", copia[i].nome);
+        printf("Data de Nascimento: %s\n\n", copia[i].dataNascimento);
+    }
+}
+
 void menuRelatorios(void)
 {
     int op;
@@ -116,6 +161,7 @@ void menuRelatorios(void)
         printf("4 - Listar Disciplinas com alunos\n");
         printf("5 - Listar Alunos por Sexo\n");
         printf("6 - Listar Alunos por Nome\n");
+        printf("7 - Listar Alunos por Data de Nascimento");
         scanf(" %d", &op);
         switch (op)
         {
@@ -139,6 +185,9 @@ void menuRelatorios(void)
             break;
         case 6:
             listarAlunosPorNome(alunos);
+            break;
+        case 7:
+            listarAlunosPorData(alunos);
             break;
 
         default:
