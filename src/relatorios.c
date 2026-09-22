@@ -70,6 +70,37 @@ void listarAlunosPorSexo(Aluno *alunos)
     }
 }  
 
+void listarAlunosPorNome(Aluno *alunos)
+{
+    Aluno copia[99];
+    Aluno temp;
+    int i, j;
+
+    for(i = 0; i < TAM_ALUNO; i++)
+    {
+        copia[i] = alunos[i];
+    }
+
+    printf("Lista Alfabética de Alunos:\n\n");
+    
+    for (i = 0; i < qtdAluno - 1; i++)
+    {
+        for(int j = 0; j < qtdAluno - 1; j++)
+        {
+            if(strcmp(copia[j].nome, copia[j+1].nome) > 0)
+            {
+                temp = copia[j];
+                copia[j] = copia[j+1];
+                copia[j+1] = temp;
+            }
+        }
+    }
+
+    for(i = 0; i < qtdAluno; i++)
+    {
+        printf("%s\n", copia[i].nome);
+    }
+}
 
 void menuRelatorios(void)
 {
@@ -84,6 +115,7 @@ void menuRelatorios(void)
         printf("3 - Listar Disciplinas sem alunos\n");
         printf("4 - Listar Disciplinas com alunos\n");
         printf("5 - Listar Alunos por Sexo\n");
+        printf("6 - Listar Alunos por Nome\n");
         scanf(" %d", &op);
         switch (op)
         {
@@ -104,6 +136,9 @@ void menuRelatorios(void)
             break;
         case 5:
             listarAlunosPorSexo(alunos);    
+            break;
+        case 6:
+            listarAlunosPorNome(alunos);
             break;
 
         default:

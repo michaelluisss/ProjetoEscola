@@ -6,15 +6,16 @@
 
 Aluno alunos[TAM_ALUNO];
 
+int qtdAluno = 0;
 
 void cadastrarAlunos(Aluno *alunos)
 {
-    for (int i = 0; i < TAM_ALUNO; i++)
+    for (int i = qtdAluno; i < TAM_ALUNO; i++)
     {
 
         getchar();
         printf("Formulario\n");
-        printf("\nNUMERO DA MATRICULA: %d", i + 1);
+        printf("\nNUMERO DA MATRICULA: %d", qtdAluno + 1);
         alunos[i].matricula = i + 1;
         alunos[i].deletado = 0;
 
@@ -42,6 +43,8 @@ void cadastrarAlunos(Aluno *alunos)
             continue;
         }
         strcpy(alunos[i].cpf, cpf);
+
+        qtdAluno++;
 
         char op;
         printf("\nDeseja continuar?(s/n)\n");
@@ -73,7 +76,7 @@ void atualizarAlunos(Aluno *alunos)
     printf("Digite a matricula do aluno que deseja atualizar: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < TAM_ALUNO; i++)
+    for (int i = 0; i < qtdAluno; i++)
     {
         if (alunos[i].matricula == matricula)
         {
@@ -125,7 +128,7 @@ void atualizarAlunos(Aluno *alunos)
 void listarAlunos(Aluno *alunos)
 {
     printf("Listagem de alunos\n\n");
-    for (int i = 0; i < TAM_ALUNO; i++)
+    for (int i = 0; i < qtdAluno; i++)
     {
         if (alunos[i].matricula != 0 && alunos[i].deletado == 0)
         {
@@ -143,7 +146,7 @@ void excluirAlunos(Aluno *alunos)
     printf("Digite a matricula do aluno que deseja excluir: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < TAM_ALUNO; i++)
+    for (int i = 0; i < qtdAluno; i++)
     {
         if (alunos[i].matricula == matricula)
         {

@@ -12,8 +12,7 @@ typedef struct
     char codigo[7];
     int semestre;
     int matriculaProfessor;
-    int qtdProfessor;
-    int qtdAluno;
+    int qtdAlunoDisciplina;
     int matriculaAluno[TAM_ALUNO];
     int deletado;
     

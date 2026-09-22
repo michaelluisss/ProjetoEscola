@@ -17,6 +17,7 @@ typedef struct Professor
 }Professor;
 
 extern Professor professores[TAM_PROFESSOR]; //avisa para outro arquivo.c q essa variavel existe mas q foi criada em outro arquivo, para poder ser utilizada
+extern int qtdProfessor;
 
 void cadastrarProfessores(Professor *professores);
 void listarProfessores(Professor *professores);

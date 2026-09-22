@@ -17,7 +17,7 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
         getchar();
         printf("Formulario\n");
         disciplinas[i].deletado = 0;
-        disciplinas[i].qtdAluno = 0;
+        disciplinas[i].qtdAlunoDisciplina = 0;
 
         printf("\nNOME: ");
         fgets(disciplinas[i].nome, sizeof(disciplinas[i].nome), stdin);
@@ -30,7 +30,7 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
 
         printf("\nPROFESSORES CADASTRADOS:\n");
 
-        for(int j = 0; j < TAM_PROFESSOR; j++)
+        for(int j = 0; j < qtdProfessores; j++)
         {
             if (professores[j].deletado == 0)
             {
@@ -44,7 +44,7 @@ void cadastrarDisciplinas(Disciplina *disciplinas, Professor *professores)
             printf("Digite a matricula do professor: ");
             scanf("%d", &disciplinas[i].matriculaProfessor);
 
-            for (int j = 0; j < TAM_PROFESSOR; j++)
+            for (int j = 0; j < qtdProfessores; j++)
             {
                 if (professores[j].deletado == 0 &&
                     disciplinas[i].matriculaProfessor == professores[j].matricula)
@@ -154,7 +154,7 @@ void listarDisciplinasComAlunos(Disciplina *disciplinas, Professor *professores,
             printf("Nome: %s\nCodigo: %s\nSemestre: %d\n",
                    disciplinas[i].nome, disciplinas[i].codigo, disciplinas[i].semestre);
              
-            for (int j = 0; j < TAM_PROFESSOR; j++)
+            for (int j = 0; j < qtdProfessores; j++)
             {
                 if (professores[j].matricula == disciplinas[i].matriculaProfessor)
                 {
@@ -162,9 +162,9 @@ void listarDisciplinasComAlunos(Disciplina *disciplinas, Professor *professores,
                     break;
                 }
             }
-            for(int j = 0; j < disciplinas[i].qtdAluno; j++)
+            for(int j = 0; j < disciplinas[i].qtdAlunoDisciplina; j++)
             {
-                for(int k = 0; k < TAM_ALUNO; k++)
+                for(int k = 0; k < qtdAluno; k++)
                 {
                     if(alunos[k].matricula == disciplinas[i].matriculaAluno[j])
                     {
@@ -194,7 +194,6 @@ void excluirDisciplinas(Disciplina *disciplinas, Professor *professores)
             {
                 disciplinas[j] = disciplinas[j + 1];
             }
-            qtdDisciplina--;
             disciplinas[qtdDisciplina].deletado = 1;
 
             printf("Disciplina excluída com sucesso\n");
@@ -222,12 +221,12 @@ void adicionarAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos)
             printf("Digite a matricula do aluno que deseja adicionar:");
             scanf("%d", &matriculaAluno);
 
-            for(int j = 0; j < TAM_ALUNO; j++)
+            for(int j = 0; j < qtdAluno; j++)
             {
                 if(alunos[j].matricula == matriculaAluno && alunos[j].deletado == 0)
                 {
-                    disciplinas[i].matriculaAluno[disciplinas[i].qtdAluno] = matriculaAluno;
-                    disciplinas[i].qtdAluno++;
+                    disciplinas[i].matriculaAluno[disciplinas[i].qtdAlunoDisciplina] = matriculaAluno;
+                    disciplinas[i].qtdAlunoDisciplina++;
                     printf("Aluno adicionado com sucesso!\n");
                     return;
                 }
@@ -256,15 +255,15 @@ void removerAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos)
             printf("Digite a matricula do aluno que deseja remover:");
             scanf("%d", &matriculaAluno);
 
-            for(int j = 0; j < disciplinas[i].qtdAluno; j++)
+            for(int j = 0; j < disciplinas[i].qtdAlunoDisciplina; j++)
             {
                 if(disciplinas[i].matriculaAluno[j] == matriculaAluno)
                 {
-                    for(int k = j; k < disciplinas[i].qtdAluno - 1; k++)
+                    for(int k = j; k < disciplinas[i].qtdAlunoDisciplina - 1; k++)
                     {
                         disciplinas[i].matriculaAluno[k] = disciplinas[i].matriculaAluno[k + 1];
                     }
-                    disciplinas[i].qtdAluno--;
+                    disciplinas[i].qtdAlunoDisciplina--;
                     printf("Aluno removido com sucesso!\n");
                     return;
                 }
