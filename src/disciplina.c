@@ -228,6 +228,7 @@ void adicionarAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos)
                     disciplinas[i].matriculaAluno[disciplinas[i].qtdAlunoDisciplina] = matriculaAluno;
                     disciplinas[i].qtdAlunoDisciplina++;
                     printf("Aluno adicionado com sucesso!\n");
+                    alunos[j].qtdDisciplinasMatriculado++;
                     return;
                 }
             }
@@ -265,6 +266,14 @@ void removerAlunoDisciplina(Disciplina *disciplinas, Aluno *alunos)
                     }
                     disciplinas[i].qtdAlunoDisciplina--;
                     printf("Aluno removido com sucesso!\n");
+                    for(int k = 0; k < qtdAluno; k++)
+                    {
+                        if(alunos[k].matricula == matriculaAluno)
+                        {
+                            alunos[k].qtdDisciplinasMatriculado--;
+                            break;
+                        }
+                    }
                     return;
                 }
             }

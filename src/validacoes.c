@@ -76,7 +76,7 @@ int verificarDataNascimento(char dataNascimento[])
     int ano = (dataNascimento[4] - '0') * 1000 + (dataNascimento[5] - '0') * 100 +
               (dataNascimento[6] - '0') * 10 + (dataNascimento[7] - '0');
 
-    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900 || ano > 2024)
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano < 1900 || ano > 2026)
     {
         printf("\n\nData de nascimento inválida!\n");
         return 0;

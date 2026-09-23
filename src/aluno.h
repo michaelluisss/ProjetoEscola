@@ -1,7 +1,7 @@
 #ifndef ALUNO_H
 #define ALUNO_H
 
-#define TAM_ALUNO 5
+#define TAM_ALUNO 10
 
 typedef struct
 {
@@ -12,7 +12,7 @@ typedef struct
     char cpf[11];
     int deletado; // 0 para não deletado
     int disciplinas[4];
-    int qtdDisciplinas;
+    int qtdDisciplinasMatriculado;
 }Aluno;
 
 extern Aluno alunos[TAM_ALUNO];

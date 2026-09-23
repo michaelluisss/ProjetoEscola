@@ -1,7 +1,7 @@
 #ifndef PROFESSOR_H
 #define PROFESSOR_H
 
-#define TAM_PROFESSOR 5
+#define TAM_PROFESSOR 10
 #define MAX_DISCIPLINA 4
 
 typedef struct Professor
