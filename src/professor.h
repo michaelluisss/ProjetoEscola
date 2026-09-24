@@ -11,12 +11,12 @@ typedef struct Professor
     char sexo;
     char dataNascimento[99];
     char cpf[12];
-    int deletado; // 0 para não deletado
+    int deletado;
     int disciplinas[4];
     int qtdDisciplinas;
 }Professor;
 
-extern Professor professores[TAM_PROFESSOR]; //avisa para outro arquivo.c q essa variavel existe mas q foi criada em outro arquivo, para poder ser utilizada
+extern Professor professores[TAM_PROFESSOR];
 extern int qtdProfessores;
 
 void cadastrarProfessores(Professor *professores);

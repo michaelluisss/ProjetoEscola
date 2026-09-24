@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
-
-void listarDisciplinasSemAlunos(Disciplina *disciplinas, Professor *professores) //testar funçãos
+void listarDisciplinasSemAlunos(Disciplina *disciplinas, Professor *professores)
 {
     printf("Listagem de Disciplinas\n\n");
     for (int i = 0; i < qtdDisciplina; i++)
@@ -16,7 +16,7 @@ void listarDisciplinasSemAlunos(Disciplina *disciplinas, Professor *professores)
         {
             printf("Nome: %s\nCodigo: %s\nSemestre: %d\n",
                    disciplinas[i].nome, disciplinas[i].codigo, disciplinas[i].semestre);
-             
+
             for (int j = 0; j < qtdProfessores; j++)
             {
                 if (professores[j].deletado == 0 && professores[j].matricula == disciplinas[i].matriculaProfessor)
@@ -44,12 +44,11 @@ void listarAlunosPorSexo(Aluno *alunos)
         sexo = 'F';
     }
 
-   
-    if(sexo == 'M')
+    if (sexo == 'M')
     {
         printf("Listagem de Alunos do sexo Masculino\n\n");
     }
-    else if(sexo == 'F')
+    else if (sexo == 'F')
     {
         printf("Listagem de Alunos do sexo Feminino\n\n");
     }
@@ -58,9 +57,8 @@ void listarAlunosPorSexo(Aluno *alunos)
         printf("Sexo inválido. Digite M ou F.\n");
         return;
     }
-    
 
-    for (int i = 0; i < qtdAluno; i++)
+    for (int i = 0; i < TAM_ALUNO; i++)
     {
         if (alunos[i].deletado == 0 && alunos[i].sexo == sexo)
         {
@@ -68,7 +66,7 @@ void listarAlunosPorSexo(Aluno *alunos)
                    alunos[i].matricula, alunos[i].nome, alunos[i].sexo, alunos[i].dataNascimento, alunos[i].cpf);
         }
     }
-}  
+}
 
 void listarAlunosPorNome(Aluno *alunos)
 {
@@ -76,33 +74,33 @@ void listarAlunosPorNome(Aluno *alunos)
     Aluno temp;
     int i, j;
 
-    for(i = 0; i < qtdAluno; i++)
+    for (i = 0; i < qtdAluno; i++)
     {
         copia[i] = alunos[i];
     }
 
     printf("Lista Alfabética de Alunos:\n\n");
-    
+
     for (i = 0; i < qtdAluno - 1; i++)
     {
-        for(int j = 0; j < qtdAluno - 1; j++)
+        for (int j = 0; j < qtdAluno - 1; j++)
         {
-            if(strcmp(copia[j].nome, copia[j+1].nome) > 0)
+            if (strcmp(copia[j].nome, copia[j + 1].nome) > 0)
             {
                 temp = copia[j];
-                copia[j] = copia[j+1];
-                copia[j+1] = temp;
+                copia[j] = copia[j + 1];
+                copia[j + 1] = temp;
             }
         }
     }
 
-    for(i = 0; i < qtdAluno; i++)
+    for (i = 0; i < qtdAluno; i++)
     {
         printf("%s\n", copia[i].nome);
     }
 }
 
-int transformarData(char dataNascimento[]) //função para transformar a data em DDMMAAAA
+int transformarData(char dataNascimento[])
 {
     int dia = (dataNascimento[0] - '0') * 10 + (dataNascimento[1] - '0');
 
@@ -162,12 +160,11 @@ void listarProfessoresPorSexo(Professor *professores)
         sexo = 'F';
     }
 
-   
-    if(sexo == 'M')
+    if (sexo == 'M')
     {
         printf("Listagem de Professores do sexo Masculino\n\n");
     }
-    else if(sexo == 'F')
+    else if (sexo == 'F')
     {
         printf("Listagem de Professores do sexo Feminino\n\n");
     }
@@ -176,9 +173,8 @@ void listarProfessoresPorSexo(Professor *professores)
         printf("Sexo inválido. Digite M ou F.\n");
         return;
     }
-    
 
-    for (int i = 0; i < qtdProfessores; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
         if (professores[i].deletado == 0 && professores[i].sexo == sexo)
         {
@@ -186,7 +182,7 @@ void listarProfessoresPorSexo(Professor *professores)
                    professores[i].matricula, professores[i].nome, professores[i].sexo, professores[i].dataNascimento, professores[i].cpf);
         }
     }
-} 
+}
 
 void listarProfessoresPorNome(Professor *professores)
 {
@@ -194,7 +190,7 @@ void listarProfessoresPorNome(Professor *professores)
     Professor temp;
     int i, j;
 
-    for(i = 0; i < qtdProfessores; i++)
+    for (i = 0; i < qtdProfessores; i++)
     {
         copia[i] = professores[i];
     }
@@ -203,18 +199,18 @@ void listarProfessoresPorNome(Professor *professores)
 
     for (i = 0; i < qtdProfessores - 1; i++)
     {
-        for(int j = 0; j < qtdProfessores - 1; j++)
+        for (int j = 0; j < qtdProfessores - 1; j++)
         {
-            if(strcmp(copia[j].nome, copia[j+1].nome) > 0)
+            if (strcmp(copia[j].nome, copia[j + 1].nome) > 0)
             {
                 temp = copia[j];
-                copia[j] = copia[j+1];
-                copia[j+1] = temp;
+                copia[j] = copia[j + 1];
+                copia[j + 1] = temp;
             }
         }
     }
 
-    for(i = 0; i < qtdProfessores; i++)
+    for (i = 0; i < qtdProfessores; i++)
     {
         printf("%s\n", copia[i].nome);
     }
@@ -257,7 +253,7 @@ void listarProfessoresPorData(Professor *professores)
 void aniversariantesDoMes(Aluno *alunos, Professor *professores)
 {
     int mes;
-    
+
     printf("Voce deseja ver os aniversariantes de qual mes?");
     scanf("%d", &mes);
     if (mes < 1 || mes > 12)
@@ -281,7 +277,7 @@ void aniversariantesDoMes(Aluno *alunos, Professor *professores)
         }
     }
     printf("Professores aniversariantes:\n");
-    for(int i = 0; i < qtdProfessores; i++)
+    for (int i = 0; i < qtdProfessores; i++)
     {
         if (professores[i].deletado == 0)
         {
@@ -294,8 +290,129 @@ void aniversariantesDoMes(Aluno *alunos, Professor *professores)
     }
 }
 
+void listarPessoasPorBusca(Aluno *alunos, Professor *professores)
+{
+    char busca[99];
+    char buscaMinuscula[99];
+    int encontrou = 0;
 
+    printf("Digite a string de busca (minimo 3 letras): ");
+    scanf(" %s", busca);
 
+    if (strlen(busca) < 3)
+    {
+        printf("Digite pelo menos 3 letras.\n");
+        return;
+    }
+
+    for (int i = 0; busca[i] != '\0'; i++)
+    {
+        buscaMinuscula[i] = tolower((unsigned char)busca[i]);
+    }
+    buscaMinuscula[strlen(busca)] = '\0';
+
+    printf("Pessoas encontradas pela busca '%s':\n\n", busca);
+
+    for (int i = 0; i < TAM_ALUNO; i++)
+    {
+        if (alunos[i].deletado == 0)
+        {
+            char nomeMinusculo[99];
+            strcpy(nomeMinusculo, alunos[i].nome);
+            for (int j = 0; nomeMinusculo[j] != '\0'; j++)
+            {
+                nomeMinusculo[j] = tolower((unsigned char)nomeMinusculo[j]);
+            }
+
+            if (strstr(nomeMinusculo, buscaMinuscula) != NULL)
+            {
+                printf("Aluno - Matricula: %d | Nome: %s\n", alunos[i].matricula, alunos[i].nome);
+                encontrou = 1;
+            }
+        }
+    }
+
+    for (int i = 0; i < TAM_PROFESSOR; i++)
+    {
+        if (professores[i].deletado == 0)
+        {
+            char nomeMinusculo[99];
+            strcpy(nomeMinusculo, professores[i].nome);
+            for (int j = 0; nomeMinusculo[j] != '\0'; j++)
+            {
+                nomeMinusculo[j] = tolower((unsigned char)nomeMinusculo[j]);
+            }
+
+            if (strstr(nomeMinusculo, buscaMinuscula) != NULL)
+            {
+                printf("Professor - Matricula: %d | Nome: %s\n", professores[i].matricula, professores[i].nome);
+                encontrou = 1;
+            }
+        }
+    }
+
+    if (!encontrou)
+    {
+        printf("Nenhuma pessoa encontrada com a busca informada.\n");
+    }
+}
+
+void listarAlunosMenosDeTresDisciplinas(Aluno *alunos)
+{
+    int encontrou = 0;
+
+    printf("Alunos matriculados em menos de 3 disciplinas:\n\n");
+
+    for (int i = 0; i < TAM_ALUNO; i++)
+    {
+        if (alunos[i].deletado == 0 && alunos[i].qtdDisciplinasMatriculado < 3)
+        {
+            printf("Matricula: %d\nNome: %s\nDisciplinas matriculadas: %d\n\n",
+                   alunos[i].matricula,
+                   alunos[i].nome,
+                   alunos[i].qtdDisciplinasMatriculado);
+            encontrou = 1;
+        }
+    }
+
+    if (!encontrou)
+    {
+        printf("Nenhum aluno encontrado com menos de 3 disciplinas.\n");
+    }
+}
+
+void listarDisciplinasAcimaDe40Vagas(Disciplina *disciplinas, Professor *professores)
+{
+    int encontrou = 0;
+
+    printf("Disciplinas que excedem 40 vagas:\n\n");
+
+    for (int i = 0; i < qtdDisciplina; i++)
+    {
+        if (disciplinas[i].deletado == 0 && disciplinas[i].nome[0] != '\0' && disciplinas[i].qtdAlunoDisciplina > 40)
+        {
+            printf("Nome: %s\nCodigo: %s\nVagas ocupadas: %d\n",
+                   disciplinas[i].nome,
+                   disciplinas[i].codigo,
+                   disciplinas[i].qtdAlunoDisciplina);
+
+            for (int j = 0; j < qtdProfessores; j++)
+            {
+                if (professores[j].deletado == 0 && professores[j].matricula == disciplinas[i].matriculaProfessor)
+                {
+                    printf("Professor: %s\n\n", professores[j].nome);
+                    break;
+                }
+            }
+            encontrou = 1;
+        }
+    }
+
+    if (!encontrou)
+    {
+        printf("Nenhuma disciplina excede 40 vagas.\n");
+    }
+}
 
 void menuRelatorios(void)
 {
@@ -316,6 +433,9 @@ void menuRelatorios(void)
         printf("9 - Listar Professores por Nome\n");
         printf("10 - Listar Professores por Data de Nascimento\n");
         printf("11 - Listar Aniversariantes do Mes\n");
+        printf("12 - Buscar Pessoas por Nome\n");
+        printf("13 - Listar Alunos com menos de 3 disciplinas\n");
+        printf("14 - Listar Disciplinas acima de 40 vagas\n");
         scanf(" %d", &op);
         switch (op)
         {
@@ -335,7 +455,7 @@ void menuRelatorios(void)
             listarDisciplinasComAlunos(disciplinas, professores, alunos);
             break;
         case 5:
-            listarAlunosPorSexo(alunos);    
+            listarAlunosPorSexo(alunos);
             break;
         case 6:
             listarAlunosPorNome(alunos);
@@ -345,16 +465,28 @@ void menuRelatorios(void)
             break;
         case 8:
             listarProfessoresPorSexo(professores);
-            break;  
+            break;
         case 9:
             listarProfessoresPorNome(professores);
             break;
         case 10:
             listarProfessoresPorData(professores);
-            break;  
+            break;
 
         case 11:
             aniversariantesDoMes(alunos, professores);
+            break;
+
+        case 12:
+            listarPessoasPorBusca(alunos, professores);
+            break;
+
+        case 13:
+            listarAlunosMenosDeTresDisciplinas(alunos);
+            break;
+
+        case 14:
+            listarDisciplinasAcimaDe40Vagas(disciplinas, professores);
             break;
 
         default:

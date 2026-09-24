@@ -10,7 +10,7 @@ typedef struct
     char sexo;
     char dataNascimento[99];
     char cpf[11];
-    int deletado; // 0 para não deletado
+    int deletado;
     int disciplinas[4];
     int qtdDisciplinasMatriculado;
 }Aluno;

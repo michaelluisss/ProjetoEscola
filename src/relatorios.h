@@ -14,7 +14,9 @@ void listarProfessoresPorSexo(Professor *professores);
 void listarProfessoresPorNome(Professor *professores);
 void listarProfessoresPorData(Professor *professores);
 void aniversariantesDoMes(Aluno *alunos, Professor *professores);
-
+void listarPessoasPorBusca(Aluno *alunos, Professor *professores);
+void listarAlunosMenosDeTresDisciplinas(Aluno *alunos);
+void listarDisciplinasAcimaDe40Vagas(Disciplina *disciplinas, Professor *professores);
 
 void menuRelatorios(void);
 

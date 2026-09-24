@@ -10,12 +10,28 @@ int qtdAluno = 0;
 
 void cadastrarAlunos(Aluno *alunos)
 {
-    for (int i = qtdAluno; i < TAM_ALUNO; i++)
-    {
+    int indiceLivre = -1;
 
+    for (int i = 0; i < TAM_ALUNO; i++)
+    {
+        if (alunos[i].deletado == 1 || alunos[i].matricula == 0)
+        {
+            indiceLivre = i;
+            break;
+        }
+    }
+
+    if (indiceLivre == -1)
+    {
+        printf("Limite de alunos excedido!\n");
+        return;
+    }
+
+    for (int i = indiceLivre; i < TAM_ALUNO; i++)
+    {
         getchar();
         printf("Formulario\n");
-        printf("\nNUMERO DA MATRICULA: %d", qtdAluno + 1);
+        printf("\nNUMERO DA MATRICULA: %d", indiceLivre + 1);
         alunos[i].matricula = i + 1;
         alunos[i].deletado = 0;
 
@@ -39,7 +55,7 @@ void cadastrarAlunos(Aluno *alunos)
         if (!verificarCpf(cpf))
         {
             printf("CPF inválido!\n");
-            i--; // Volta para repetir o cadastro
+            i--;
             continue;
         }
         strcpy(alunos[i].cpf, cpf);
@@ -76,9 +92,9 @@ void atualizarAlunos(Aluno *alunos)
     printf("Digite a matricula do aluno que deseja atualizar: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < qtdAluno; i++)
+    for (int i = 0; i < TAM_ALUNO; i++)
     {
-        if (alunos[i].matricula == matricula)
+        if (alunos[i].deletado == 0 && alunos[i].matricula == matricula)
         {
 
             printf("\nDados atuais:\n");
@@ -128,7 +144,7 @@ void atualizarAlunos(Aluno *alunos)
 void listarAlunos(Aluno *alunos)
 {
     printf("Listagem de alunos\n\n");
-    for (int i = 0; i < qtdAluno; i++)
+    for (int i = 0; i < TAM_ALUNO; i++)
     {
         if (alunos[i].matricula != 0 && alunos[i].deletado == 0)
         {
@@ -146,11 +162,13 @@ void excluirAlunos(Aluno *alunos)
     printf("Digite a matricula do aluno que deseja excluir: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < qtdAluno; i++)
+    for (int i = 0; i < TAM_ALUNO; i++)
     {
-        if (alunos[i].matricula == matricula)
+        if (alunos[i].matricula == matricula && alunos[i].deletado == 0)
         {
-            alunos[i].deletado = 1; // 1 para aluno deletado
+            alunos[i].deletado = 1;
+            if (qtdAluno > 0)
+                qtdAluno--;
             printf("Aluno excluido com sucesso\n");
             return;
         }

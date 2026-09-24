@@ -1,5 +1,4 @@
 
-//renome o arquivo para professor.c
 #include "professor.h"
 #include "validacoes.h"
 #include <stdio.h>
@@ -10,15 +9,31 @@ Professor professores[TAM_PROFESSOR];
 
 int qtdProfessores = 0;
 
-
 void cadastrarProfessores(Professor *professores)
 {
-    for (int i = qtdProfessores; i < TAM_PROFESSOR; i++)
+    int indiceLivre = -1;
+
+    for (int i = 0; i < TAM_PROFESSOR; i++)
+    {
+        if (professores[i].deletado == 1 || professores[i].matricula == 0)
+        {
+            indiceLivre = i;
+            break;
+        }
+    }
+
+    if (indiceLivre == -1)
+    {
+        printf("Limite de professores excedido!\n");
+        return;
+    }
+
+    for (int i = indiceLivre; i < TAM_PROFESSOR; i++)
     {
 
         getchar();
         printf("Formulario\n");
-        printf("\nNUMERO DA MATRICULA: %d", i + 1);
+        printf("\nNUMERO DA MATRICULA: %d", indiceLivre + 1);
         professores[i].matricula = i + 1;
         professores[i].deletado = 0;
 
@@ -42,7 +57,7 @@ void cadastrarProfessores(Professor *professores)
         if (!verificarCpf(cpf))
         {
             printf("CPF inválido!\n");
-            i--; // Volta para repetir o cadastro
+            i--;
             continue;
         }
         strcpy(professores[i].cpf, cpf);
@@ -79,9 +94,9 @@ void atualizarProfessores(Professor *professores)
     printf("Digite a matricula do professor que deseja atualizar: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < qtdProfessores; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
-        if (professores[i].matricula == matricula)
+        if (professores[i].deletado == 0 && professores[i].matricula == matricula)
         {
 
             printf("\nDados atuais:\n");
@@ -131,7 +146,7 @@ void atualizarProfessores(Professor *professores)
 void listarProfessores(Professor *professores)
 {
     printf("Listagem de professores\n\n");
-    for (int i = 0; i < qtdProfessores; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
         if (professores[i].matricula != 0 && professores[i].deletado == 0)
         {
@@ -149,11 +164,13 @@ void excluirProfessores(Professor *professores)
     printf("Digite a matricula do professor que deseja excluir: ");
     scanf("%d", &matricula);
 
-    for (int i = 0; i < qtdProfessores; i++)
+    for (int i = 0; i < TAM_PROFESSOR; i++)
     {
-        if (professores[i].matricula == matricula)
+        if (professores[i].matricula == matricula && professores[i].deletado == 0)
         {
-            professores[i].deletado = 1; // 1 para professor deletado
+            professores[i].deletado = 1;
+            if (qtdProfessores > 0)
+                qtdProfessores--;
             printf("Professor excluido com sucesso\n");
             return;
         }
